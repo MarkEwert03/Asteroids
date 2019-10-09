@@ -1,13 +1,14 @@
 class Bullet extends GameObject {
   //1. Instance Variables
-  int s;
+  int s, age;
 
   //2. Constructor(s)
   Bullet() {
     location = new PVector(myShip.location.x, myShip.location.y);
     velocity = new PVector(myShip.direction.x, myShip.direction.y);
-    velocity.setMag(.5);
-    s = 10;
+    velocity.setMag(8);
+    s = 5;
+    age = 120;
   }
 
   //3. Behavior functions
@@ -18,6 +19,11 @@ class Bullet extends GameObject {
   }// -----------------------------------------------------------------------------------------
 
   void act() {
-    location.add(velocity);
+    super.act();
+    
+    age--;
+    if(age == 0);{
+      age = 120;
+    }
   }// -----------------------------------------------------------------------------------------
 }

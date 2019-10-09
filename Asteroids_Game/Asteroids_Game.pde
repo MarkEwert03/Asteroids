@@ -18,13 +18,18 @@ color black           = 0;
 color grey            = 127;
 color white           = 255;
 
+//Game Objects
+ArrayList<GameObject> objectList;
+final int SHIPSIZE = 50;
+final int ASTEROIDSIZE = 100;
+
 //Spaceship
 boolean upKey, leftKey, downKey, rightKey, spaceKey;
-PImage spaceship;
+PImage spaceshipPic;
 Ship myShip;
 
-//Game Objects
-ArrayList<GameObject> myGameObjects;
+//Asteroid
+PImage asteroidPic;
 
 void setup() {
   //Basic
@@ -33,25 +38,31 @@ void setup() {
   //Images
   imageMode(CENTER);
 
+  //List
+  objectList = new ArrayList<GameObject>();
+
   //Spaceship
   myShip = new Ship();
-  spaceship = loadImage("Ship.png");
-  spaceship.resize(50, 50);
-  myGameObjects = new ArrayList<GameObject>();
+  spaceshipPic = loadImage("Ship.png");
+  spaceshipPic.resize(SHIPSIZE, SHIPSIZE);
+  objectList.add(myShip);
+
+  //Asteroid
+  asteroidPic = loadImage("Asteroid.png");
+  asteroidPic.resize(ASTEROIDSIZE, ASTEROIDSIZE);
+  objectList.add( new Asteroid() );
+  objectList.add( new Asteroid() );
+  objectList.add( new Asteroid() );
 }// -----------------------------------------------------------------------------------------
 
 void draw() {
   background(black);
 
-  //Ship
-  myShip.show();
-  myShip.act();
-
   //Bullet
-  for (int i = 0; i < myGameObjects.size(); i++) {
-    GameObject tempGameObject = myGameObjects.get(i);
-    tempGameObject.show();
-    tempGameObject.act();
+  for (int i = 0; i < objectList.size(); i++) {
+    GameObject currentObject = objectList.get(i);
+    currentObject.show();
+    currentObject.act();
   }
 }// -----------------------------------------------------------------------------------------
 

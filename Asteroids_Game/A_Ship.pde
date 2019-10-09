@@ -14,22 +14,17 @@ class Ship extends GameObject {
     pushMatrix();
     translate(location.x, location.y);
     rotate(direction.heading());
-    image(spaceship, 0, 0);
+    image(spaceshipPic, 0, 0);
     popMatrix();
   }// -----------------------------------------------------------------------------------------
 
-  void act() {
-    location.add(velocity);
+  void act() { 
+    super.act();
     
     if (upKey) velocity.add(direction);
     if (downKey) velocity.sub(direction);
     if (leftKey) direction.rotate(-radians(2));
     if (rightKey) direction.rotate(radians(2));
-    if (spaceKey) myGameObjects.add(new Bullet());
-    
-    if (location.x < -25) location.x = width+25;
-    if (location.y < -25) location.y = height+25;
-    if (width+25 < location.x) location.x = -25;
-    if (height+25 < location.y) location.y = -25;
+    if (spaceKey) objectList.add(new Bullet());
   }// -----------------------------------------------------------------------------------------
 }
