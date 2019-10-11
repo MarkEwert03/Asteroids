@@ -1,6 +1,13 @@
 //Mark Ewert
 //Oct 3
 
+//Mode Framework
+int mode;
+final int INTRO = 0;
+final int GAME  = 1;
+final int LOSE  = 2;
+final int WIN   = 3;
+
 //Colours
 color red             = #df2020;
 color orange          = #df8020;
@@ -20,8 +27,6 @@ color white           = 255;
 
 //Game Objects
 ArrayList<GameObject> objectList;
-final int SHIPSIZE = 50;
-final int ASTEROIDSIZE = 100;
 
 //Spaceship
 boolean upKey, leftKey, downKey, rightKey, spaceKey;
@@ -31,9 +36,11 @@ Ship myShip;
 //Asteroid
 PImage asteroidPic;
 
+// ------------------------------------------------------------------------------------------
 void setup() {
   //Basic
   size(800, 600);
+  mode = INTRO;
 
   //Images
   imageMode(CENTER);
@@ -44,27 +51,34 @@ void setup() {
   //Spaceship
   myShip = new Ship();
   spaceshipPic = loadImage("Ship.png");
-  spaceshipPic.resize(SHIPSIZE, SHIPSIZE);
   objectList.add(myShip);
 
   //Asteroid
   asteroidPic = loadImage("Asteroid.png");
-  asteroidPic.resize(ASTEROIDSIZE, ASTEROIDSIZE);
+  objectList.add( new Asteroid() );
+  objectList.add( new Asteroid() );
   objectList.add( new Asteroid() );
   objectList.add( new Asteroid() );
   objectList.add( new Asteroid() );
 }// -----------------------------------------------------------------------------------------
 
 void draw() {
-  background(black);
+  //Mode Framework
+  if      (mode == INTRO) intro();
+  else if (mode == GAME)  game();
+  else if (mode == LOSE)  lose();
+  else if (mode == WIN)   win();
+  else println("Error! Mode was " + mode);
 
-  //Bullet
-  for (int i = 0; i < objectList.size(); i++) {
-    GameObject currentObject = objectList.get(i);
-    currentObject.show();
-    currentObject.act();
-  }
 }// -----------------------------------------------------------------------------------------
+
+void mousePressed() {
+  if      (mode == INTRO) mode = GAME;
+  else if (mode == GAME)  mode = LOSE;
+  else if (mode == LOSE)  mode = INTRO;
+  else if (mode == WIN)   mode = INTRO;
+  else println("Error! Mode was " + mode);
+}
 
 void keyPressed() {
   if (key == 'w' || keyCode == UP)    upKey = true;

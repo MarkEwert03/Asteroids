@@ -1,10 +1,11 @@
 abstract class GameObject {
   //1. Instance Variables
-  int lives;
+  int lives, size;
   PVector location, velocity;
 
   //2. Constructor(s)
   GameObject() {
+    lives = 3;
   }
 
   //3. Behavior functions
@@ -14,10 +15,10 @@ abstract class GameObject {
   void act() {
     location.add(velocity);
 
-    if (location.x < -SHIPSIZE/2) location.x = width+SHIPSIZE/2;
-    if (location.y < -SHIPSIZE/2) location.y = height+SHIPSIZE/2;
-    if (width+SHIPSIZE/2 < location.x) location.x = -SHIPSIZE/2;
-    if (height+SHIPSIZE/2 < location.y) location.y = -SHIPSIZE/2;
+    if (location.x < -size/2) location.x = width+size/2;
+    if (location.y < -size/2) location.y = height+size/2;
+    if (width+size/2 < location.x) location.x = -size/2;
+    if (height+size/2 < location.y) location.y = -size/2;
   }// -----------------------------------------------------------------------------------------
 
   boolean alive() {
