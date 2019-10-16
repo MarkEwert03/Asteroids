@@ -5,8 +5,9 @@
 int mode;
 final int INTRO = 0;
 final int GAME  = 1;
-final int LOSE  = 2;
-final int WIN   = 3;
+final int PAUSE = 2;
+final int LOSE  = 3;
+final int WIN   = 4;
 
 //Colours
 color red             = #df2020;
@@ -44,6 +45,10 @@ void setup() {
 
   //Images
   imageMode(CENTER);
+  
+  //Text
+  textAlign(CENTER, CENTER);
+  textSize(120);
 
   //List
   objectList = new ArrayList<GameObject>();
@@ -66,6 +71,7 @@ void draw() {
   //Mode Framework
   if      (mode == INTRO) intro();
   else if (mode == GAME)  game();
+  else if (mode == PAUSE) pause();
   else if (mode == LOSE)  lose();
   else if (mode == WIN)   win();
   else println("Error! Mode was " + mode);
@@ -73,10 +79,11 @@ void draw() {
 }// -----------------------------------------------------------------------------------------
 
 void mousePressed() {
-  if      (mode == INTRO) mode = GAME;
-  else if (mode == GAME)  mode = LOSE;
-  else if (mode == LOSE)  mode = INTRO;
-  else if (mode == WIN)   mode = INTRO;
+  if      (mode == INTRO) introMousedPressed();
+  else if (mode == GAME)  gameMousedPressed();
+  else if (mode == PAUSE) pauseMousedPressed();
+  else if (mode == LOSE)  loseMousedPressed();
+  else if (mode == WIN)   winMousedPressed();
   else println("Error! Mode was " + mode);
 }
 

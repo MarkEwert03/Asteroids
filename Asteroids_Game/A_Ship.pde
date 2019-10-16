@@ -34,5 +34,20 @@ class Ship extends GameObject {
       objectList.add(new Bullet());
       shotTimer = 0;
     }
+    
+    println(lives);
+    
+    //0. Loop
+    for (int i = 0; i<objectList.size(); i++) {
+      GameObject currentObject = objectList.get(i);
+      //1. 
+      if (currentObject instanceof Asteroid) {
+        //2. If touching ship
+        if (dist(currentObject.location.x, currentObject.location.x, location.x, location.x) < currentObject.size/2 + size/2) {
+          lives--;
+          currentObject.lives = 0;
+        }//0.
+      }//1.
+    }//2.
   }// -----------------------------------------------------------------------------------------
 }

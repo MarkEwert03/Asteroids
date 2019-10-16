@@ -14,15 +14,15 @@ class Bullet extends GameObject {
   //3. Behavior functions
   void show() {
     noStroke();
-    fill(cyan);
+    fill(mint);
     ellipse(location.x, location.y, size, size);
   }// -----------------------------------------------------------------------------------------
 
   void act() {
     super.act();
 
+    //Bullets will disappear after a while
     age--;
     if (age == 0) lives = 0;
-
   }// -----------------------------------------------------------------------------------------
 }
