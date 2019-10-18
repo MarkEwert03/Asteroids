@@ -37,6 +37,7 @@ class Asteroid extends GameObject {
         if (dist(location.x, location.y, currentObject.location.x, currentObject.location.y) < size/2 + currentObject.size/2) {
           lives = 0;
           currentObject.lives = 0;
+          myShip.score++;
           //3. Only add two new ones if asteroid isn't too small
           if (30 <= size) {
             objectList.add( new Asteroid(size/2, location.x, location.y));

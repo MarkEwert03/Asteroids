@@ -36,6 +36,10 @@ Ship myShip;
 
 //Asteroid
 PImage asteroidPic;
+int timer = 120;
+
+//UFO
+PImage ufoPic;
 
 // ------------------------------------------------------------------------------------------
 void setup() {
@@ -45,7 +49,7 @@ void setup() {
 
   //Images
   imageMode(CENTER);
-  
+
   //Text
   textAlign(CENTER, CENTER);
   textSize(120);
@@ -57,14 +61,12 @@ void setup() {
   myShip = new Ship();
   spaceshipPic = loadImage("Ship.png");
   objectList.add(myShip);
-
+  
   //Asteroid
   asteroidPic = loadImage("Asteroid.png");
-  objectList.add( new Asteroid() );
-  objectList.add( new Asteroid() );
-  objectList.add( new Asteroid() );
-  objectList.add( new Asteroid() );
-  objectList.add( new Asteroid() );
+  
+  //UFO
+  
 }// -----------------------------------------------------------------------------------------
 
 void draw() {
@@ -75,7 +77,6 @@ void draw() {
   else if (mode == LOSE)  lose();
   else if (mode == WIN)   win();
   else println("Error! Mode was " + mode);
-
 }// -----------------------------------------------------------------------------------------
 
 void mousePressed() {

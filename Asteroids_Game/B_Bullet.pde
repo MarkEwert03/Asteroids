@@ -9,6 +9,7 @@ class Bullet extends GameObject {
     velocity.setMag(8);
     size = 10;
     age = 60;
+    lives = 3;
   }
 
   //3. Behavior functions
@@ -24,5 +25,6 @@ class Bullet extends GameObject {
     //Bullets will disappear after a while
     age--;
     if (age == 0) lives = 0;
+    
   }// -----------------------------------------------------------------------------------------
 }
