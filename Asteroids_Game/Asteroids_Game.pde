@@ -36,10 +36,15 @@ Ship myShip;
 
 //Asteroid
 PImage asteroidPic;
-int timer = 120;
+int asteroidTimer = 180;
 
 //UFO
 PImage ufoPic;
+int ufoTimer = 600;
+
+//Other
+int score;
+PFont font;
 
 // ------------------------------------------------------------------------------------------
 void setup() {
@@ -52,7 +57,8 @@ void setup() {
 
   //Text
   textAlign(CENTER, CENTER);
-  textSize(120);
+  font = createFont("Rock Font.ttf", 120);
+  textFont(font);
 
   //List
   objectList = new ArrayList<GameObject>();
@@ -66,6 +72,8 @@ void setup() {
   asteroidPic = loadImage("Asteroid.png");
   
   //UFO
+  ufoPic = loadImage("UFO.png");
+  
   
 }// -----------------------------------------------------------------------------------------
 

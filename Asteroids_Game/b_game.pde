@@ -20,10 +20,17 @@ void game() {
   }//0.t
 
   //Asteroid
-  timer--;
-  if (timer <= 0) {
-    timer = 120;
+  asteroidTimer--;
+  if (asteroidTimer <= 0) {
+    asteroidTimer = int(random(120, 240));
     objectList.add( new Asteroid(int(random(75, 125)), 850, 650));
+  }
+
+  //UFO
+  ufoTimer--;
+  if (ufoTimer <= 0) {
+    ufoTimer = 60000;
+    objectList.add( new UFO(int(random(25, 75)), 850, 650) );
   }
 
   //Pause Button
@@ -43,8 +50,8 @@ void game() {
   //Score
   textSize(24);
   fill(white);
-  text("Score: ", width*7/8, height/16);
-  text(myShip.score, width*15/16, height/16);
+  text("Score: ", width*3/4, height/16);
+  text(score, width*15/16, height/16);
 }// -----------------------------------------------------------------------------------------
 
 void gameMousedPressed() {

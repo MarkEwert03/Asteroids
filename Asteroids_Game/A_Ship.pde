@@ -1,7 +1,7 @@
 class Ship extends GameObject {
   //1. Instance Variables
   PVector direction;
-  int shotTimer, threshold, score;
+  int shotTimer, threshold;
 
   //2. Constructor(s)
   Ship() {
@@ -37,17 +37,18 @@ class Ship extends GameObject {
       shotTimer = 0;
     }
 
-    //0. Loop
-    for (int i = 0; i<objectList.size(); i++) {
-      GameObject currentObject = objectList.get(i);
-      //1. 
-      if (currentObject instanceof Asteroid) {
-        //2. If touching ship
-        if (dist(currentObject.location.x, currentObject.location.y, location.x, location.y) < currentObject.size/2 + size/2) {
-          lives--;
-          currentObject.lives = 0;
-        }//2.
-      }//1.
-    }//0.
+    ////Touching asteroid?
+    ////0. Loop
+    //for (int i = 0; i<objectList.size(); i++) {
+    //  GameObject currentObject = objectList.get(i);
+    //  //1. 
+    //  if (currentObject instanceof Asteroid) {
+    //    //2. If touching ship
+    //    if (dist(currentObject.location.x, currentObject.location.y, location.x, location.y) < currentObject.size/2 + size/2) {
+    //      lives--;
+    //      currentObject.lives = 0;
+    //    }//2.
+    //  }//1.
+    //}//0.
   }// -----------------------------------------------------------------------------------------
 }// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------

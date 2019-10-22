@@ -1,28 +1,29 @@
-class Bullet extends GameObject {
+class Particle extends GameObject {
   //1. Instance Variables
   int age;
 
   //2. Constructor(s)
-  Bullet() {
-    location = new PVector(myShip.location.x, myShip.location.y);
-    velocity = new PVector(myShip.direction.x, myShip.direction.y);
-    velocity.setMag(8);
-    size = 10;
-    age = 60;
+  Particle(float _x, float _y) {
+    location = new PVector(_x, _y);
+    velocity = new PVector(random(-1, 1), random(-1, 1));
+    velocity.setMag(4);
+    size = 4;
+    age = 64;
     lives = 2;
   }
 
   //3. Behavior functions
   void show() {
     noStroke();
-    fill(mint);
+    //Age is the alpha value
+    fill(grey, age*4);
     ellipse(location.x, location.y, size, size);
   }// -----------------------------------------------------------------------------------------
 
   void act() {
     super.act();
 
-    //Bullets will disappear after a while
+    //Particles will disappear after a while
     age--;
     if (age == 0) lives = 0;
     

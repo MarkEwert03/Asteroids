@@ -1,9 +1,9 @@
-class Bullet extends GameObject {
+class UfoBullet extends GameObject {
   //1. Instance Variables
   int age;
 
   //2. Constructor(s)
-  Bullet() {
+  UfoBullet() {
     location = new PVector(myShip.location.x, myShip.location.y);
     velocity = new PVector(myShip.direction.x, myShip.direction.y);
     velocity.setMag(8);
@@ -15,7 +15,7 @@ class Bullet extends GameObject {
   //3. Behavior functions
   void show() {
     noStroke();
-    fill(mint);
+    fill(pink);
     ellipse(location.x, location.y, size, size);
   }// -----------------------------------------------------------------------------------------
 
@@ -25,6 +25,5 @@ class Bullet extends GameObject {
     //Bullets will disappear after a while
     age--;
     if (age == 0) lives = 0;
-    
   }// -----------------------------------------------------------------------------------------
 }
