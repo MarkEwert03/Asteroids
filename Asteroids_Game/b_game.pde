@@ -15,22 +15,23 @@ void game() {
     //1. When ship is dead
     if (currentObject.lives == 1) {
       myShip.lives = 4;
-      mode = LOSE;
+      if (highScoreColor == mint) mode = WIN;
+      else mode = LOSE;
     }//1.
   }//0.t
 
   //Asteroid
   asteroidTimer--;
   if (asteroidTimer <= 0) {
-    asteroidTimer = int(random(120, 240));
+    asteroidTimer = int(random(240, 360));
     objectList.add( new Asteroid(int(random(75, 125)), 850, 650));
   }
 
   //UFO
   ufoTimer--;
   if (ufoTimer <= 0) {
-    ufoTimer = 60000;
-    objectList.add( new UFO(int(random(25, 75)), 850, 650) );
+    ufoTimer = 900;
+    objectList.add( new UFO(50, random(-25, + width/2), 650) );
   }
 
   //Pause Button
@@ -42,8 +43,11 @@ void game() {
   ellipse(width-30, height-30, 50, 50);
 
   //Lives
+  if (myShip.lives-1 == 3) livesColor = yellow;
+  if (myShip.lives-1 == 2) livesColor = orange;
+  if (myShip.lives-1 == 1) livesColor = red;
   textSize(24);
-  fill(white);
+  fill(livesColor);
   text("Lives: ", width/16, height/16);
   text(myShip.lives-1, width/8, height/16);
 
@@ -51,7 +55,16 @@ void game() {
   textSize(24);
   fill(white);
   text("Score: ", width*3/4, height/16);
-  text(score, width*15/16, height/16);
+  text(score, width*7/8, height/16);
+
+  //HighScore
+  if (highScore < score) {
+    highScore = score;
+    highScoreColor = mint;
+  }
+  fill(highScoreColor);
+  text("High Score: ", width*23/32, height/8);
+  text(highScore, width*7/8, height/8);
 }// -----------------------------------------------------------------------------------------
 
 void gameMousedPressed() {

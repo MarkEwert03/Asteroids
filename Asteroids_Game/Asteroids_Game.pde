@@ -14,7 +14,7 @@ color red             = #df2020;
 color orange          = #df8020;
 color yellow          = #dfdf20;
 color lime            = #80df20;
-color green            = #50df20;
+color green           = #50df20;
 color mint            = #20df50;
 color cyan            = #20dfdf;
 color blue            = #2080df;
@@ -40,11 +40,12 @@ int asteroidTimer = 180;
 
 //UFO
 PImage ufoPic;
-int ufoTimer = 600;
+int ufoTimer = 900;
 
 //Other
-int score;
+int score, highScore, highScoreColor, livesColor;
 PFont font;
+PImage introPic, winPic, losePic;
 
 // ------------------------------------------------------------------------------------------
 void setup() {
@@ -54,6 +55,9 @@ void setup() {
 
   //Images
   imageMode(CENTER);
+  introPic = loadImage("Nebula.jpg");
+  losePic  = loadImage("Lose.jpg");
+  winPic   = loadImage("Win.jpg");
 
   //Text
   textAlign(CENTER, CENTER);
@@ -74,6 +78,9 @@ void setup() {
   //UFO
   ufoPic = loadImage("UFO.png");
   
+  //Other
+  highScoreColor = 255;
+  livesColor = 255;
   
 }// -----------------------------------------------------------------------------------------
 

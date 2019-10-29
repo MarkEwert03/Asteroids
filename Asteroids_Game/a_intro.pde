@@ -1,5 +1,5 @@
 void intro() {
-  background(navy);
+  image(introPic, width/2, height/2);
   
   //Text
   fill(white);

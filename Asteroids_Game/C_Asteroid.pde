@@ -2,19 +2,10 @@ class Asteroid extends GameObject {
   //1. Instance Variables
 
   //2. Constructor(s)
-  Asteroid() {
-    size = 100;
-    lives = 3;
-    location = new PVector( random(width), random(height) );
-    velocity = new PVector( random(-1, 1), random(-1, 1) );
-    velocity.setMag( random(1, 3) );
-    velocity.rotate( random(TWO_PI) );
-  }// -----------------------------------------------------------------------------------------
-
-  Asteroid(int _size, float x, float y) {
+  Asteroid(int _size, float _x, float _y) {
     size = _size;
     lives = 3;
-    location = new PVector( x, y );
+    location = new PVector( _x, _y );
     velocity = new PVector( random(-1, 1), random(-1, 1) );
     velocity.setMag( random(0.5, 2) );
     velocity.rotate( random(TWO_PI) );
@@ -40,7 +31,7 @@ class Asteroid extends GameObject {
           score+= map(size, 0, 125, 1000, 10000);
           //3. Particle loop
           for (int j = 0; j <100; j++) {
-            objectList.add( new Particle(location.x+random(-size/2, size/2), location.y+random(-size/2, size/2)));
+            objectList.add( new Particle(location.x+random(-size/2, size/2), location.y+random(-size/2, size/2),grey) );
           }//3.
           //3. Only add two new ones if asteroid isn't too small
           if (45 <= size) {

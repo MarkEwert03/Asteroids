@@ -3,12 +3,12 @@ class UfoBullet extends GameObject {
   int age;
 
   //2. Constructor(s)
-  UfoBullet() {
-    location = new PVector(myShip.location.x, myShip.location.y);
-    velocity = new PVector(myShip.direction.x, myShip.direction.y);
-    velocity.setMag(8);
+  UfoBullet(float _x, float _y) {
+    location = new PVector(_x, _y);
+    velocity = new PVector(myShip.location.x - _x, myShip.location.y - _y);
+    velocity.setMag(5);
     size = 10;
-    age = 60;
+    age = 120;
     lives = 2;
   }
 
@@ -25,5 +25,13 @@ class UfoBullet extends GameObject {
     //Bullets will disappear after a while
     age--;
     if (age == 0) lives = 0;
+
+    if (dist(location.x, location.y, myShip.location.x, myShip.location.y) < size/2 + myShip.size/2) {
+      if (myShip.invinsible == false) {
+        lives = 0;
+        myShip.lives--;
+        myShip.invinsible = true;
+      }
+    }
   }// -----------------------------------------------------------------------------------------
 }
