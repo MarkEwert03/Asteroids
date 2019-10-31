@@ -4,7 +4,7 @@ class Ship extends GameObject {
   int shotTimer, threshold;
 
   //Forcefield
-  int d, aTimer;
+  int aTimer;
   boolean invinsible;
 
   //2. Constructor(s)
@@ -15,7 +15,7 @@ class Ship extends GameObject {
     shotTimer = 15;
     threshold = 0;
     size = 50;
-    lives = 2;
+    lives = 4; //Subtract 1 to get hit points
     score = 0;
 
     //Forcefield
